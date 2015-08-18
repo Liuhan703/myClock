@@ -1,19 +1,31 @@
 var oStorage = window.localStorage;
 
-function setData(data, num) {
-	oStorage.setItem('data' + num, JSON.stringify(data));
+function setData(alarmTime,countDown,pickInfo,isOn) {
+	if(getData()){
+		var data = getData();
+		data["alarmTime"] = data["alarmTime"] + "," + alarmTime;
+		data["countDown"] = data["countDown"] + "," + countDown;
+		data["pickInfo"] = data["pickInfo"] + "," + pickInfo;
+		data["isOn"] = data["isOn"] + "," + isOn;
+	}
+	else{
+		var data = {};
+		data["alarmTime"] = alarmTime;
+		data["countDown"] = countDown;
+		data["pickInfo"] = pickInfo;
+		data["isOn"] = isOn;
+	}
+
+
+	oStorage.setItem('data', JSON.stringify(data));
 }
 
-function setNum(num) {
-	oStorage.setItem('num', JSON.stringify(num));
+
+function getData() {
+	return JSON.parse(oStorage.getItem('data' ));
 }
 
-function getData(num) {
-	return
-	JSON.parse(oStorage.getItem('data' + num));
+function clearData(){
+	oStorage.clear();
 }
 
-function getNum() {
-	return
-	JSON.parse(oStorage.getItem('num'));
-}

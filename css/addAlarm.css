@@ -15,7 +15,7 @@ div#screen1{
 	height: 640px;
 	border: 1px solid #222;
 	margin:0px 480px;
-	display: none;
+
 }
 div#head{
 
@@ -104,7 +104,7 @@ div#selection{
 	margin-left: 20px;
 	margin-right: 20px;
   overflow-y: auto;
-   overflow-x: hidden;
+  overflow-x: hidden;
 
 }
 div#selection table {
@@ -141,9 +141,10 @@ div#bottom{
 	height:20px;
 	width: 100%;
 }
-div#bottom p{
+div#bottom a{
 	margin-top: 5px;
 	color: #D1762E;
 	font-size: 14pt;
 	cursor: pointer;
+	text-decoration: none;
 }

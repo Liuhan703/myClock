@@ -1,155 +1,11 @@
-﻿<!doctype html>
-
+<!doctype html>
 <html>
-
-
-
 <head>
 <meta http-equiv="Content-Type" content="charset=UTF-8"/>
-<script type="text/javascript" src="js/drawClockDial.js"></script>
-<script type="text/javascript" src="js/drawClockHand.js"></script>
-<link rel="stylesheet" type="text/css" href="css/addAlarm.css">
-<style type="text/css">
-canvas,p,div#alarm table td{
-	margin: 0px;
-	padding: 0px;
-}
-p,a{
-	font-family: Helvetica,"微软雅黑";
-}
-div,canvas,p,table{
-	border:none;
 
-}
-canvas{
-	position: absolute;
-}
-div#screen{
-	width: 400px;
-	height: 640px;
-	border: 1px solid #222;
-	margin:10px auto;
-	display: block;
-}
-div#clockContaniner{
-	background-color: #219BDC;
-	width:100%;
-	height:40%;
-}
-div#clock{
-	margin:28px 10px;
-	padding: 0px;
-	height:200px;
-	width: 200px;
-	float: left;
-	
-} 
-div#digTime{
-	width: 150px;
-	margin-top: 40px;
-	margin-left: 10px;
-	margin-right: 10px;
-	padding: 0px;
-	float:left;
-	height: 80px;
-}
-div#digTime p{
 
-	display: block;
-	color:#fff;
-	
-	float: right;
-	margin-right:8px;
+<link rel="stylesheet" type="text/css" href="css/myClock.css">
 
-}
-p#timeTxt{
-	font-size: 28pt;
-	margin: 4px;
-
-	
-}
-p#location{
-	font-size: 17pt;
-	margin:4px;
-	clear: both;
-}
-div#alarm{
-	width: 100%;
-	height: 60%;
-}
-div#alarm table{
-	height: 100%;
-	width: 90%;
-	margin: 0 auto;
-}
-div#alarm table tr:first-child{
-	height: 24px;
-}
-div#alarm table tr:first-child td{
-	border-bottom:1px solid #aaa;
-}
-div#alarm table tr:first-child td p{
- font-size: 11pt;
-	float: left;
-}
-div#alarm table tr:first-child td a{
-	font-size: 11pt;
-	float: right;
-	color: #D1762E;
-	text-decoration: none;
-	cursor: pointer;
-}
-div#alarm table tr:last-child td {
-	height:300px;
-	width: 100%;
-
-}
-div#alarmContainer{
-	width:100%;
-	height: 300px;
-	overflow-y: auto;
-  overflow-x: hidden;
-}
-div.myAlarm{
-	width: 100%;
-	height: 73px;
-	border-bottom: 1px solid #ccc;
-	
-}
-div.myAlarm div{
-	float: left;
-}
-div.leftIcon{
-	height: 20px;
-	width: 2px;
-	background-color: #D1762E;
-	margin: 26px 17px;
-}
-div.alarmTime{
-	line-height: 73px;
-	font-size: 26pt;
-	width:144px;	
-}
-div.alarmInfo{
-	width:144px;
-	line-height: 24px;
-
-}
-div.alarmInfo p{
-	font-size: 11pt;
-	clear:both;
-	float: right;
-}
-div.rightIcon{
-	float: right;
-	width: 30px;
-	height: 71px;
-	background-image: url(rightIcon.png);
-	background-position: 11px 30px;
-	background-repeat: no-repeat;
-}
-
-</style>
 </head>
 <body>
 <div id="screen">
@@ -164,17 +20,17 @@ div.rightIcon{
 		<table cellpadding="0	">
 			<tr>
 				<td><p>闹钟</p>
-				<a onclick="changeScreen();">添加闹钟</a></td>
+				<a href="addAlarm.html">添加闹钟</a></td>
 			</tr>
 			<tr>
 				<td valign="top">
 				<div id="alarmContainer" >
-					<div class="myAlarm">
+					<!--div class="myAlarm">
 						<div class="leftIcon"></div>
 						<div class="alarmTime">09:24</div>
 						<div class="alarmInfo"><p>闹钟</p><p class="alarmInfoTime">14个小时后</p><p>工作日</p></div>
 						<div class="rightIcon"></div>
-					</div>
+					</div--><!--demo-->
 
 
 				</div>
@@ -185,296 +41,22 @@ div.rightIcon{
 </div>
 
 
-<div id="screen1">
-	<div id="head"><p>添加闹钟</p></div>
-	<div id="timeSet">
-		<div id="hoursSet">
-			
-			<div id="hoursBox">
-			<div><p align="center">0</p></div>
-			<div><p align="center">1</p></div>
-			<div><p align="center">2</p></div>
-			<div><p align="center">3</p></div>
-			<div><p align="center">4</p></div>
-			<div><p align="center">5</p></div>
-			<div><p align="center">6</p></div>
-			<div><p align="center">7</p></div>
-			<div><p align="center">8</p></div>
-			<div><p align="center">9</p></div>
-			<div><p align="center">10</p></div>
-			<div><p align="center">11</p></div>
-			<div><p align="center">12</p></div>
-			<div><p align="center">13</p></div>
-			<div><p align="center">14</p></div>
-			<div><p align="center">15</p></div>
-			<div><p align="center">16</p></div>
-			<div><p align="center">17</p></div>
-			<div><p align="center">18</p></div>
-			<div><p align="center">19</p></div>
-			<div><p align="center">20</p></div>
-			<div><p align="center">21</p></div>
-			<div><p align="center">22</p></div>
-			<div><p align="center">23</p></div>
-			<div><p align="center">0</p></div>
-			<div><p align="center">1</p></div>
-			</div>
-		</div>
-		<div id="minutesSet">
-			<div id="minutesBox">
-			<div><p align="center">0</p></div>
-			<div><p align="center">1</p></div>
-			<div><p align="center">2</p></div>
-			<div><p align="center">3</p></div>
-			<div><p align="center">4</p></div>
-			<div><p align="center">5</p></div>
-			<div><p align="center">6</p></div>
-			<div><p align="center">7</p></div>
-			<div><p align="center">8</p></div>
-			<div><p align="center">9</p></div>
-			<div><p align="center">10</p></div>
-			<div><p align="center">11</p></div>
-			<div><p align="center">12</p></div>
-			<div><p align="center">13</p></div>
-			<div><p align="center">14</p></div>
-			<div><p align="center">15</p></div>
-			<div><p align="center">16</p></div>
-			<div><p align="center">17</p></div>
-			<div><p align="center">18</p></div>
-			<div><p align="center">19</p></div>
-			<div><p align="center">20</p></div>
-			<div><p align="center">21</p></div>
-			<div><p align="center">22</p></div>
-			<div><p align="center">23</p></div>
-			<div><p align="center">24</p></div>
-			<div><p align="center">25</p></div>
-			<div><p align="center">26</p></div>
-			<div><p align="center">27</p></div>
-			<div><p align="center">28</p></div>
-			<div><p align="center">29</p></div>
-			<div><p align="center">30</p></div>
-			<div><p align="center">31</p></div>
-			<div><p align="center">32</p></div>
-			<div><p align="center">33</p></div>
-			<div><p align="center">34</p></div>
-			<div><p align="center">35</p></div>
-			<div><p align="center">36</p></div>
-			<div><p align="center">37</p></div>
-			<div><p align="center">38</p></div>
-			<div><p align="center">39</p></div>
-			<div><p align="center">40</p></div>
-			<div><p align="center">41</p></div>
-			<div><p align="center">42</p></div>
-			<div><p align="center">43</p></div>
-			<div><p align="center">44</p></div>
-			<div><p align="center">45</p></div>
-			<div><p align="center">46</p></div>
-			<div><p align="center">47</p></div>
-			<div><p align="center">48</p></div>
-			<div><p align="center">49</p></div>
-			<div><p align="center">50</p></div>
-			<div><p align="center">51</p></div>
-			<div><p align="center">52</p></div>
-			<div><p align="center">53</p></div>
-			<div><p align="center">54</p></div>
-			<div><p align="center">55</p></div>
-			<div><p align="center">56</p></div>
-			<div><p align="center">57</p></div>
-			<div><p align="center">58</p></div>
-			<div><p align="center">59</p></div>
-			<div><p align="center">0</p></div>
-			<div><p align="center">1</p></div>
-			
-		</div>
-		</div>
-		<div id="fixed" ><p align="center">时</p><p align="center">分</p></div>
-	</div>
-	<div id="selection">
-		<table cellspacing="0">
-			<tr>
-				<td>重复</td>
-				<td>
-				<div onclick="repeatDate(this,0)">日</div>
-				<div onclick="repeatDate(this,1)">一</div>
-				<div onclick="repeatDate(this,2)">二</div>
-				<div onclick="repeatDate(this,3)">三</div>
-				<div onclick="repeatDate(this,4)">四</div>
-				<div onclick="repeatDate(this,5)">五</div>
-				<div onclick="repeatDate(this,6)">六</div>
-				</td>
-			</tr>
-			<tr>
-				<td></td>
-				<td><div></div></td>
-			</tr>
 
 
 
-		</table>
-
-	</div>
-	<div id="bottom" align="center"><p onclick="confirm();">确定</p></div>
-</div>
-
-
-<script type="text/javascript" src="js/addAlarm.js"></script>
+<script type="text/javascript" src="js/time/timeCaculate.js"></script>
+<script type="text/javascript" src="js/drawClockDial.js"></script>
+<script type="text/javascript" src="js/drawClockHand.js"></script>
 <script type="text/javascript" src="js/drawClock.js"></script>
+<script type="text/javascript" src="js/passData.js"></script>
 <script type="text/javascript">
 	
 	var screen0 = document.getElementById("screen");
-	var screen1 = document.getElementById("screen1");
 	var alarmContainer = document.getElementById("alarmContainer");
-	var currentScreen = 0;
-	function changeScreen(){
-	if(currentScreen == 0){
-		screen1.style.display = "block";
-		screen0.style.display = "none";
-		currentScreen = 1;
-	}
-	else{
-		screen0.style.display = "block";
-		screen1.style.display = "none";
-		currentScreen = 0;		
-	}
 
 
-	}
-	/*获取当前时间，计算差值*/
-	function timeDvalue(hours,minutes){
-		var currentTime = getTimes();
-		var cHours = currentTime.hours;
-		var cMinutes = currentTime.minutes;
-		var dTime = {};
-		if(hours == cHours){
-			if(minutes == cMinutes){
-				dTime['hours'] = 0;
-				dTime['minutes'] = 0;
-			}
-			else if(minutes > cMinutes){
-				dTime['hours'] = 0;
-				dTime['minutes'] = minutes - cMinutes;
-			}
-			else if(minutes < cMinutes){
-				dTime['hours'] = 23;
-				dTime['minutes'] = 60 + minutes - cMinutes;
-			}
-		}
-		if(hours > cHours){
-			if(minutes == cMinutes){
-				dTime['hours'] = hours - cHours;
-				dTime['minutes'] = 0;
-			}
-			else if(minutes > cMinutes){
-				dTime['hours'] = hours - cHours;
-				dTime['minutes'] = minutes - cMinutes;
-			}
-			else if(minutes < cMinutes){
-				dTime['hours'] = hours - cHours - 1;
-				dTime['minutes'] = 60 + minutes - cMinutes;			
-			}		
-		}
-		if(hours < cHours){
-			if(minutes == cMinutes){
-				dTime['hours'] = 24 + hours - cHours;
-				dTime['minutes'] = 0;
-			}
-			else if(minutes > cMinutes){
-				dTime['hours'] = 24 + hours - cHours;
-				dTime['minutes'] = minutes - cMinutes;
-			}
-			else if(minutes < cMinutes){
-				dTime['hours'] = 23 + hours - cHours;
-				dTime['minutes'] = 60 + minutes - cMinutes;			
-			}
-		}
-		return dTime;
-	}
-	
-	//确认数据，生成div
-function confirm(){
-	var hours = (hFlag == 23)?0:hFlag+1;
-	var minutes = (mFlag == 59)?0:mFlag+1;
-
-	var newEle = document.createElement('div');
-	newEle.className = "myAlarm";
-	/*创建div容器内四个元素*/
-	var leftIcon = document.createElement("div");
-	leftIcon.className = "leftIcon";
-	var alarmTime = document.createElement("div");
-	alarmTime.className = "alarmTime";
-	var alarmInfo = document.createElement("div");
-	alarmInfo.className = "alarmInfo";
-	var rightIcon = document.createElement("div");
-	rightIcon.className = "rightIcon";
-	/*为容器内元素添加内容*/
-	//先判断选择日期
-	var dateTmp1 = 1;var dateTmp0 = 0;var dateTmp3 = 0;//临时变量
-	var pickInfo = "周";
-	for(var i = 0;i<7;i++){
-
-		if(dateFlag[i] == 1){//选中了某天
-
-			switch (i){
-				case 0:
-					pickInfo = pickInfo+"日  ";dateTmp3 --;break;
-				case 1:
-
-					pickInfo = pickInfo+"一  ";dateTmp3 ++;break;
-				case 2:
-					pickInfo = pickInfo+"二  ";dateTmp3 ++;break;
-				case 3:
-					pickInfo = pickInfo+"三  ";dateTmp3 ++;break;
-				case 4:
-					pickInfo = pickInfo+"四  ";dateTmp3 ++;break;
-				case 5:
-					pickInfo = pickInfo+"五  ";dateTmp3 ++;break;
-				case 6:
-					pickInfo = pickInfo+"六  ";dateTmp3 --;break;
-
-			}
-		}
-		dateTmp1 = dateTmp1*dateFlag[i];
-		dateTmp0 = dateTmp0+dateFlag[i];	
-	}
-	if(dateTmp1){//每天都选了
-		pickInfo = "每天";
-	}
-	if(dateTmp0 == 0){//一天也没选
-		pickInfo = "仅一次";
-	}
-	if(dateTmp3 == 5){//工作日
-		pickInfo = "工作日";
-	}
 
 
-	var dTime = timeDvalue(hours,minutes);
-	//如果设置为当前时间，改为23h59m
-	if (dTime.hours == 0 && dTime.minutes == 0){
-		 	dTime.hours = 23;
-		 	dTime.minutes = 59;
-		 }
-	if(dTime.hours == 0||dTime.minutes == 0){
-		if(dTime.hours == 0){
-				alarmInfo.innerHTML = "<p>闹钟</p><p class='alarmInfoTime'>"+dTime.minutes+"分钟后</p><p>"+pickInfo+"</p>";
-		}
-		if(dTime.minutes == 0){
-				alarmInfo.innerHTML = "<p>闹钟</p><p class='alarmInfoTime'>"+dTime.hours+"小时后</p><p>"+pickInfo+"</p>";
-		}
-	}
-	else{
-		alarmInfo.innerHTML = "<p>闹钟</p><p class='alarmInfoTime'>"+dTime.hours+"小时"+dTime.minutes+"分钟后</p><p>"+pickInfo+"</p>";
-	}
-	if(hours<10){hours = "0"+hours}
-	if(minutes<10){minutes = "0"+minutes}
-	alarmTime.innerHTML = hours+":"+minutes;
-	newEle.appendChild(leftIcon);
-	newEle.appendChild(alarmTime);
-	newEle.appendChild(alarmInfo);
-	newEle.appendChild(rightIcon);
-	alarmContainer.appendChild(newEle);
-
-	changeScreen();
-
-}
 
 /*实时监测闹钟*/
 function refreshAlarm(){
@@ -512,6 +94,64 @@ function refreshAlarm(){
 	}
 }
 setInterval("refreshAlarm()",1000);
+
+
+//加载页面时读取闹钟数据
+
+
+function alarmDiv(alarmTime,countDown,pickInfo,isOn){
+	this.alarmTime = alarmTime;
+	this.countDown = countDown;
+	this.pickInfo = pickInfo;
+	this.isOn = isOn;
+	this.domEle = document.createElement('div');
+	this.domEle.className = "myAlarm";
+}
+
+alarmDiv.prototype.showObj = function(){//在页面上生成元素
+
+	
+	/*创建div容器内四个元素*/
+	var leftIconEle = document.createElement("div");
+	leftIconEle.className = "leftIcon";
+	var alarmTimeEle = document.createElement("div");
+	alarmTimeEle.className = "alarmTime";
+	var alarmInfoEle = document.createElement("div");
+	alarmInfoEle.className = "alarmInfo";
+	var rightIconEle = document.createElement("div");
+	rightIconEle.className = "rightIcon";
+	/*为容器内元素添加内容*/
+
+	alarmTimeEle.innerHTML = this.alarmTime;
+	alarmInfoEle.innerHTML = "<p>闹钟</p><p class='alarmInfoTime'>"+this.countDown+"后</p><p>"+this.pickInfo+"</p>";
+	/*添加至页面容器内*/
+	var alarmContainer = document.getElementById("alarmContainer");
+	this.domEle.appendChild(leftIconEle);
+	this.domEle.appendChild(alarmTimeEle);
+	this.domEle.appendChild(alarmInfoEle);
+	this.domEle.appendChild(rightIconEle);
+	alarmContainer.appendChild(this.domEle);
+}
+
+
+function init(){
+	var data = getData();
+	//获取数据 并分割成数组
+	var alarmTime = data["alarmTime"].split(",");
+	var countDown = data["countDown"].split(",");
+	var pickInfo = data["pickInfo"].split(",");
+	var isOn = data["isOn"].split(",");
+	var newEle = new Array();
+	for(var i = 0 ; i<alarmTime.length;i++){
+		newEle[i] = new alarmDiv(alarmTime[i],countDown[i],pickInfo[i],isOn[i]);
+		newEle[i].showObj();
+	}
+	
+
+
+}
+
+init();
 </script>
 </body>
 </html>

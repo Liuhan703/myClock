@@ -1,4 +1,4 @@
-var cDial = document.getElementById("myClockDial");
+	var cDial = document.getElementById("myClockDial");
 	var cxtD = cDial.getContext("2d");
 	var cHand = document.getElementById("myClockHand");
 	var cxtH = cHand.getContext("2d");
@@ -12,15 +12,7 @@ var cDial = document.getElementById("myClockDial");
 	  if(minutes<10){minutes = "0"+minutes}
 		timeTxt.innerHTML = hours+":"+minutes;
 	}
-	function getTimes(){
-		var currentDate = new Date();
-		var currentTime = {
-			hours:currentDate.getHours(),
-			minutes:currentDate.getMinutes(),
-			seconds:currentDate.getSeconds(),
-		};
-		return currentTime;
-	}
+	
 	function refreshTime(){
 		/*var currentDate = new Date();
 		var currentTime={

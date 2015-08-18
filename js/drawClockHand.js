@@ -1,5 +1,5 @@
 function drawClockHand(cxt,time){
-	cxt.clearRect(-100,-100,200,200);
+	cxt.clearRect(-100,-100,200,200);//刷新画布
 
 
 	secondDeg = time.seconds*Math.PI/30;
