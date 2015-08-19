@@ -119,13 +119,13 @@
 			<tr>
 				<td>重复</td>
 				<td>
-				<div onclick="repeatDate(this,0)">日</div>
-				<div onclick="repeatDate(this,1)">一</div>
-				<div onclick="repeatDate(this,2)">二</div>
-				<div onclick="repeatDate(this,3)">三</div>
-				<div onclick="repeatDate(this,4)">四</div>
-				<div onclick="repeatDate(this,5)">五</div>
-				<div onclick="repeatDate(this,6)">六</div>
+				<div class="datePick" onclick="repeatDate(this,0)">日</div>
+				<div class="datePick" onclick="repeatDate(this,1)">一</div>
+				<div class="datePick" onclick="repeatDate(this,2)">二</div>
+				<div class="datePick" onclick="repeatDate(this,3)">三</div>
+				<div class="datePick" onclick="repeatDate(this,4)">四</div>
+				<div class="datePick" onclick="repeatDate(this,5)">五</div>
+				<div class="datePick" onclick="repeatDate(this,6)">六</div>
 				</td>
 			</tr>
 			<tr>
@@ -143,7 +143,45 @@
 <script type="text/javascript" src="js/time/timeCaculate.js"></script>
 <script type="text/javascript" src="js/passData.js"></script>
 <script type="text/javascript" src="js/addAlarm.js"></script>
+<script type="text/javascript">
+	function init(){
+	
 
+	var index = getNum();
+		
+	if(index == -1){//新建闹钟
+
+	}
+	else{//已有闹钟点进来
+		var data = getData();
+		var dateFlagTmp = data["dateFlag"].split(" ")[index];//得到字符串
+		var dateFlag = dateFlagTmp.split(",");//得到字符串数组,长度为7
+		var hFlag = data["hFlag"].split(",")[index];
+		var mFlag = data["mFlag"].split(",")[index];
+		
+		/*设置显示时间*/
+		var hoursEle = document.getElementById("hoursBox");
+		var minutesEle = document.getElementById("minutesBox");
+		hoursEle.style.webkitTransform = "translateY(-"+hFlag*60+"px)";
+		minutesEle.style.webkitTransform = "translateY(-"+mFlag*60+"px)";
+		/*设置显示选择日期*/
+		var datePickEles = document.getElementsByClassName("datePick");
+		for(var i = 0;i<7;i++){
+			if(dateFlag[i] == 1){
+				datePickEles[i].style.color = "#fff";
+				datePickEles[i].style.backgroundColor = "#D1762E";
+				datePickEles[i].style.border = "none";
+			}
+		}
+
+	}
+	
+
+
+	}
+
+	init();
+</script>
 
 	
 	

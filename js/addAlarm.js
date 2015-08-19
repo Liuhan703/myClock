@@ -4,64 +4,7 @@ var alarmTime,countDown,pickInfo,isOn;
 
 var hoursEle = document.getElementById("hoursBox");
 var minutesEle = document.getElementById("minutesBox");
-function getTimes(){
-		var currentDate = new Date();
-		var currentTime = {
-			hours:currentDate.getHours(),
-			minutes:currentDate.getMinutes(),
-			seconds:currentDate.getSeconds(),
-		};
-		return currentTime;
-	}
-function timeDvalue(hours,minutes){
-		var currentTime = getTimes();
-		var cHours = currentTime.hours;
-		var cMinutes = currentTime.minutes;
-		var dTime = {};
-		if(hours == cHours){
-			if(minutes == cMinutes){
-				dTime['hours'] = 0;
-				dTime['minutes'] = 0;
-			}
-			else if(minutes > cMinutes){
-				dTime['hours'] = 0;
-				dTime['minutes'] = minutes - cMinutes;
-			}
-			else if(minutes < cMinutes){
-				dTime['hours'] = 23;
-				dTime['minutes'] = 60 + minutes - cMinutes;
-			}
-		}
-		if(hours > cHours){
-			if(minutes == cMinutes){
-				dTime['hours'] = hours - cHours;
-				dTime['minutes'] = 0;
-			}
-			else if(minutes > cMinutes){
-				dTime['hours'] = hours - cHours;
-				dTime['minutes'] = minutes - cMinutes;
-			}
-			else if(minutes < cMinutes){
-				dTime['hours'] = hours - cHours - 1;
-				dTime['minutes'] = 60 + minutes - cMinutes;			
-			}		
-		}
-		if(hours < cHours){
-			if(minutes == cMinutes){
-				dTime['hours'] = 24 + hours - cHours;
-				dTime['minutes'] = 0;
-			}
-			else if(minutes > cMinutes){
-				dTime['hours'] = 24 + hours - cHours;
-				dTime['minutes'] = minutes - cMinutes;
-			}
-			else if(minutes < cMinutes){
-				dTime['hours'] = 23 + hours - cHours;
-				dTime['minutes'] = 60 + minutes - cMinutes;			
-			}
-		}
-		return dTime;
-	}
+
 
 function timeSet(e){
   //鼠标滚轮监听
@@ -183,9 +126,9 @@ function confirm(){
 	if(hours<10){hours = "0"+hours}
 	if(minutes<10){minutes = "0"+minutes}
 	alarmTime = hours+":"+minutes;
-	isOn = true;
+	isOn = "on";
 
-  setData(alarmTime,countDown,pickInfo,isOn);
+  setData(alarmTime,countDown,pickInfo,isOn,hFlag,mFlag,dateFlag);
 }
 
 

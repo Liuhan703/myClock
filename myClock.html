@@ -20,7 +20,7 @@
 		<table cellpadding="0	">
 			<tr>
 				<td><p>闹钟</p>
-				<a href="addAlarm.html">添加闹钟</a></td>
+				<a onclick="newAlarm()">添加闹钟</a></td>
 			</tr>
 			<tr>
 				<td valign="top">
@@ -39,7 +39,7 @@
 		</table>
 	</div>
 </div>
-
+<input type="button" value="clear" onclick="clearData()"/>
 
 
 
@@ -99,13 +99,18 @@ setInterval("refreshAlarm()",1000);
 //加载页面时读取闹钟数据
 
 
-function alarmDiv(alarmTime,countDown,pickInfo,isOn){
+function alarmDiv(alarmTime,countDown,pickInfo,isOn,num){
 	this.alarmTime = alarmTime;
 	this.countDown = countDown;
 	this.pickInfo = pickInfo;
 	this.isOn = isOn;
+	this.num = num;
 	this.domEle = document.createElement('div');
 	this.domEle.className = "myAlarm";
+	this.changeAlarm = function(){//点击右边div 进入alarm页面
+		setNum(num);
+		window.location.href = "addAlarm.html";
+	}
 }
 
 alarmDiv.prototype.showObj = function(){//在页面上生成元素
@@ -114,12 +119,15 @@ alarmDiv.prototype.showObj = function(){//在页面上生成元素
 	/*创建div容器内四个元素*/
 	var leftIconEle = document.createElement("div");
 	leftIconEle.className = "leftIcon";
+	leftIconEle.onclick =  changeOn;
+
 	var alarmTimeEle = document.createElement("div");
 	alarmTimeEle.className = "alarmTime";
 	var alarmInfoEle = document.createElement("div");
 	alarmInfoEle.className = "alarmInfo";
 	var rightIconEle = document.createElement("div");
 	rightIconEle.className = "rightIcon";
+	rightIconEle.onclick = this.changeAlarm;
 	/*为容器内元素添加内容*/
 
 	alarmTimeEle.innerHTML = this.alarmTime;
@@ -135,23 +143,39 @@ alarmDiv.prototype.showObj = function(){//在页面上生成元素
 
 
 function init(){
-	var data = getData();
-	//获取数据 并分割成数组
-	var alarmTime = data["alarmTime"].split(",");
-	var countDown = data["countDown"].split(",");
-	var pickInfo = data["pickInfo"].split(",");
-	var isOn = data["isOn"].split(",");
-	var newEle = new Array();
-	for(var i = 0 ; i<alarmTime.length;i++){
-		newEle[i] = new alarmDiv(alarmTime[i],countDown[i],pickInfo[i],isOn[i]);
-		newEle[i].showObj();
+  if(getData()){
+		var data = getData();
+
+		//获取数据 并分割成数组
+		var alarmTime = data["alarmTime"].split(",");
+		var countDown = data["countDown"].split(",");
+		var pickInfo = data["pickInfo"].split(",");
+		var isOn = data["isOn"].split(",");
+
+		 newEle = new Array();
+		for(var i = 0 ; i<alarmTime.length;i++){
+			newEle[i] = new alarmDiv(alarmTime[i],countDown[i],pickInfo[i],isOn[i],i);
+			newEle[i].showObj();
+		}
 	}
-	
-
-
 }
 
-init();
+init();//初始化完成，加载页面闹钟数据完成
+
+
+
+function changeOn(){
+	alert("click left");
+}
+/*function changeAlarm(index){//已经存在的闹钟，传递index判断其值
+	alert(index);
+	setNum(index);
+	window.location.href = "addAlarm.html";
+}*/
+function newAlarm(){//新闹钟，则赋值index为-1
+	setNum(-1);
+	window.location.href = "addAlarm.html";
+}
 </script>
 </body>
 </html>
