@@ -1,5 +1,4 @@
-var mFlag=0;var hFlag = 0;
-var dateFlag = [0,0,0,0,0,0,0];
+
 var alarmTime,countDown,pickInfo,isOn;
 
 var hoursEle = document.getElementById("hoursBox");
@@ -128,7 +127,7 @@ function confirm(){
 	alarmTime = hours+":"+minutes;
 	isOn = "on";
 
-  setData(alarmTime,countDown,pickInfo,isOn,hFlag,mFlag,dateFlag);
+  setData(alarmTime,countDown,pickInfo,isOn,hFlag,mFlag,dateFlag,index);
 }
 
 

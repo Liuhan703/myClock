@@ -12,7 +12,7 @@
 
 
 <div id="screen1">
-	<div id="head"><p>添加闹钟</p></div>
+	<div id="head"><p id="info">添加闹钟</p></div>
 	<div id="timeSet">
 		<div id="hoursSet">
 			
@@ -144,20 +144,24 @@
 <script type="text/javascript" src="js/passData.js"></script>
 <script type="text/javascript" src="js/addAlarm.js"></script>
 <script type="text/javascript">
+
+
 	function init(){
 	
 
-	var index = getNum();
+	index = getNum();
 		
 	if(index == -1){//新建闹钟
-
+		mFlag=0;hFlag = 0;
+		dateFlag = [0,0,0,0,0,0,0];//全局变量
 	}
 	else{//已有闹钟点进来
+		document.getElementById("info").innerHTML = "编辑闹钟";
 		var data = getData();
 		var dateFlagTmp = data["dateFlag"].split(" ")[index];//得到字符串
-		var dateFlag = dateFlagTmp.split(",");//得到字符串数组,长度为7
-		var hFlag = data["hFlag"].split(",")[index];
-		var mFlag = data["mFlag"].split(",")[index];
+		dateFlag = dateFlagTmp.split(",");//得到字符串数组,长度为7
+		hFlag = parseInt(data["hFlag"].split(",")[index]);
+		mFlag = parseInt(data["mFlag"].split(",")[index]);
 		
 		/*设置显示时间*/
 		var hoursEle = document.getElementById("hoursBox");

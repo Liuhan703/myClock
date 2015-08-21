@@ -107,19 +107,44 @@ function alarmDiv(alarmTime,countDown,pickInfo,isOn,num){
 	this.num = num;
 	this.domEle = document.createElement('div');
 	this.domEle.className = "myAlarm";
+
 	this.changeAlarm = function(){//点击右边div 进入alarm页面
 		setNum(num);
 		window.location.href = "addAlarm.html";
 	}
-}
+	this.changeOn = function(){//点击左侧更改alarm状态
+		var divToChange = document.getElementsByClassName("myAlarm")[num];
+		var leftIconToChange = document.getElementsByClassName("leftIcon")[num].childNodes[0];
+		var pInfoToChange = document.getElementsByClassName("alarmInfoTime")[num];	
+	 	if(isOn == "on"){//如果当前状态是激活的
+	 		
+			divToChange.style.color = "#bbb";
+			
+			leftIconToChange.style.backgroundColor = "#bbb";
+			pInfoToChange.innerHTML = "关闭";
+			isOn = "off";
+	 	}
+	 	else{
+	 		divToChange.style.color = "#000";
+			
+			leftIconToChange.style.backgroundColor = "#D1762E";
+			pInfoToChange.innerHTML = "";
+			isOn = "on";
+	 	}
+		
+		
+	}
+} 	
 
 alarmDiv.prototype.showObj = function(){//在页面上生成元素
 
 	
 	/*创建div容器内四个元素*/
 	var leftIconEle = document.createElement("div");
+	var leftIconDiv = document.createElement("div");
+	leftIconEle.appendChild(leftIconDiv);
 	leftIconEle.className = "leftIcon";
-	leftIconEle.onclick =  changeOn;
+	leftIconEle.onclick =  this.changeOn;
 
 	var alarmTimeEle = document.createElement("div");
 	alarmTimeEle.className = "alarmTime";
@@ -164,14 +189,8 @@ init();//初始化完成，加载页面闹钟数据完成
 
 
 
-function changeOn(){
-	alert("click left");
-}
-/*function changeAlarm(index){//已经存在的闹钟，传递index判断其值
-	alert(index);
-	setNum(index);
-	window.location.href = "addAlarm.html";
-}*/
+
+
 function newAlarm(){//新闹钟，则赋值index为-1
 	setNum(-1);
 	window.location.href = "addAlarm.html";
