@@ -26,4 +26,4 @@
 		drawClockHand(cxtH,currentTime);
 	}
 	refreshTime();
-	setInterval(refreshTime,1000);
+	setInterval(refreshTime,500);

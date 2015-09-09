@@ -1,11 +1,12 @@
 function drawClockHand(cxt,time){
-	cxt.clearRect(-100,-100,200,200);//刷新画布
+	var canvas = cxt.canvas;
+	cxt.clearRect(-100,-100,canvas.offsetWidth, canvas.offsetHeight);//刷新画布  x,y.width,height
 
 
 	secondDeg = time.seconds*Math.PI/30;
-	minutesDeg = time.minutes*Math.PI/30;
+	minutesDeg = time.minutes*Math.PI/30+time.seconds*2*Math.PI/60/60;
 	hoursof12 = time.hours>12?(time.hours-12):time.hours;
-	hoursDeg = hoursof12*Math.PI/6;
+	hoursDeg = hoursof12*Math.PI/6+time.minutes*2*Math.PI/60/12;
 
 
 	cxt.rotate(secondDeg);

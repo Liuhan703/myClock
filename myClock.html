@@ -2,8 +2,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="charset=UTF-8"/>
-
-
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalabel=no"/>
 <link rel="stylesheet" type="text/css" href="css/myClock.css">
 
 </head>
@@ -17,7 +16,7 @@
 		<div id="digTime"><p id="timeTxt"></p><p id="location">北京</p></div>
 	</div>
 	<div id="alarm">
-		<table cellpadding="0	">
+		<table cellpadding="0">
 			<tr>
 				<td><p>闹钟</p>
 				<a onclick="newAlarm()">添加闹钟</a></td>
@@ -51,8 +50,7 @@
 <script type="text/javascript" src="js/passData.js"></script>
 <script type="text/javascript">
 	
-	var screen0 = document.getElementById("screen");
-	var alarmContainer = document.getElementById("alarmContainer");
+
 
 
 
@@ -61,39 +59,44 @@
 /*实时监测闹钟*/
 function refreshAlarm(){
 	if(document.getElementsByClassName("alarmTime")){
-		var alarmTimeEles = document.getElementsByClassName("alarmTime");
+
+		
 		var alarmInfoEles = document.getElementsByClassName("alarmInfoTime");
-		for(var i = 0;i<alarmTimeEles.length;i++){
+		for(var i = 0;i<alarmInfoEles.length;i++){
+			if(newEle[i].getIsOns() == "on"){
+					var tmp = newEle[i].alarmTime.split(":");
 
-		 var tmp = alarmTimeEles[i].innerHTML.split(":");
-		 var alarmTime = {};
+				 var alarmTime = {};
 
-		 alarmTime['hours'] = parseInt(tmp[0]);
-		 alarmTime['minutes'] = parseInt(tmp[1]);
+				 alarmTime['hours'] = parseInt(tmp[0]);
+				 alarmTime['minutes'] = parseInt(tmp[1]);
 
-		 var dTime = timeDvalue(alarmTime['hours'], alarmTime['minutes']);
+				 var dTime = timeDvalue(alarmTime['hours'], alarmTime['minutes']);
 
-		 if (dTime.hours == 0 && dTime.minutes == 0){
-		 	var currentTime = getTimes();
-		 	if(currentTime.seconds == 0){
-		 		alert("Ding Ding Ding ~~");
-		 	}
-		 }
-		 if(dTime.hours == 0||dTime.minutes == 0){
-			if(dTime.hours == 0){
-					alarmInfoEles[i].innerHTML = dTime.minutes+"分钟后";
+				 if (dTime.hours == 0 && dTime.minutes == 0){
+				 	var currentTime = getTimes();
+				 	if(currentTime.seconds == 0){
+				 		alert("Ding Ding Ding ~~");
+				 	}
+				 }
+				 if(dTime.hours == 0||dTime.minutes == 0){
+					if(dTime.hours == 0){
+							alarmInfoEles[i].innerHTML = dTime.minutes+"分钟后";
+					}
+					if(dTime.minutes == 0){
+							alarmInfoEles[i].innerHTML = dTime.hours+"小时后";
+					}
+				}
+				else{
+					alarmInfoEles[i].innerHTML = dTime.hours+"小时"+dTime.minutes+"分钟后";
+				}
+				}
 			}
-			if(dTime.minutes == 0){
-					alarmInfoEles[i].innerHTML = dTime.hours+"小时后";
-			}
-		}
-		else{
-			alarmInfoEles[i].innerHTML = dTime.hours+"小时"+dTime.minutes+"分钟后";
-		}
-		}
+			
+		 
 	}
 }
-setInterval("refreshAlarm()",1000);
+
 
 
 //加载页面时读取闹钟数据
@@ -103,40 +106,51 @@ function alarmDiv(alarmTime,countDown,pickInfo,isOn,num){
 	this.alarmTime = alarmTime;
 	this.countDown = countDown;
 	this.pickInfo = pickInfo;
-	this.isOn = isOn;
+	var isOns =isOn;
 	this.num = num;
 	this.domEle = document.createElement('div');
 	this.domEle.className = "myAlarm";
+	
+	this.getIsOns = function(){
+		return isOns;
+	}
 
+	
 	this.changeAlarm = function(){//点击右边div 进入alarm页面
+		console.log(this);//
 		setNum(num);
 		window.location.href = "addAlarm.html";
 	}
+
+	
 	this.changeOn = function(){//点击左侧更改alarm状态
 		var divToChange = document.getElementsByClassName("myAlarm")[num];
 		var leftIconToChange = document.getElementsByClassName("leftIcon")[num].childNodes[0];
 		var pInfoToChange = document.getElementsByClassName("alarmInfoTime")[num];	
-	 	if(isOn == "on"){//如果当前状态是激活的
-	 		
+		
+	 	if(isOns == "on"){//如果当前状态是激活的  用this的话 则this会指向触发这个函数的div 所以在前面先将this赋给that
+	 		console.log(isOns);
 			divToChange.style.color = "#bbb";
 			
 			leftIconToChange.style.backgroundColor = "#bbb";
 			pInfoToChange.innerHTML = "关闭";
-			isOn = "off";
+			isOns = "off";
 	 	}
 	 	else{
+	 		console.log(isOns);
+	 		isOns = "on";
+	 		
 	 		divToChange.style.color = "#000";
 			
 			leftIconToChange.style.backgroundColor = "#D1762E";
-			pInfoToChange.innerHTML = "";
-			isOn = "on";
+			refreshAlarm();//待改正
+			
 	 	}
 		
 		
 	}
-} 	
 
-alarmDiv.prototype.showObj = function(){//在页面上生成元素
+	this.showObj = function(){//在页面上生成元素
 
 	
 	/*创建div容器内四个元素*/
@@ -166,27 +180,30 @@ alarmDiv.prototype.showObj = function(){//在页面上生成元素
 	alarmContainer.appendChild(this.domEle);
 }
 
+} 	
+
+
+
 
 function init(){
   if(getData()){
 		var data = getData();
-
+ 		newEle = new Array();
 		//获取数据 并分割成数组
-		var alarmTime = data["alarmTime"].split(",");
-		var countDown = data["countDown"].split(",");
-		var pickInfo = data["pickInfo"].split(",");
-		var isOn = data["isOn"].split(",");
-
-		 newEle = new Array();
-		for(var i = 0 ; i<alarmTime.length;i++){
-			newEle[i] = new alarmDiv(alarmTime[i],countDown[i],pickInfo[i],isOn[i],i);
+		for(var i = 0, dLength = data.length;i<dLength;i++){
+			var alarmTime = data[i].alarmTime;
+			var countDown = data[i].countDown;
+			var pickInfo = data[i].pickInfo;
+			var isOn = data[i].isOn;
+			newEle[i] = new alarmDiv(alarmTime,countDown,pickInfo,isOn,i);
 			newEle[i].showObj();
 		}
+		
 	}
 }
 
 init();//初始化完成，加载页面闹钟数据完成
-
+setInterval("refreshAlarm()",1000);
 
 
 

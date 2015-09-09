@@ -122,8 +122,8 @@ function confirm(){
 	}
 
 	//获取设置的时间
-	if(hours<10){hours = "0"+hours}
-	if(minutes<10){minutes = "0"+minutes}
+	hours = ("0"+hours).slice(-2);
+	minutes = ("0"+minutes).slice(-2);//一位数字则前面加0
 	alarmTime = hours+":"+minutes;
 	isOn = "on";
 

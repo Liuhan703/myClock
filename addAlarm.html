@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="charset=UTF-8"/>
-
+<meat name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalabel=no"/>
 <link rel="stylesheet" type="text/css" href="css/addAlarm.css">
 
 
@@ -158,11 +158,10 @@
 	else{//已有闹钟点进来
 		document.getElementById("info").innerHTML = "编辑闹钟";
 		var data = getData();
-		var dateFlagTmp = data["dateFlag"].split(" ")[index];//得到字符串
-		dateFlag = dateFlagTmp.split(",");//得到字符串数组,长度为7
-		hFlag = parseInt(data["hFlag"].split(",")[index]);
-		mFlag = parseInt(data["mFlag"].split(",")[index]);
-		
+	
+		hFlag = data[index].hFlag;
+		mFlag = data[index].mFlag;
+		dateFlag = data[index].dateFlag;
 		/*设置显示时间*/
 		var hoursEle = document.getElementById("hoursBox");
 		var minutesEle = document.getElementById("minutesBox");
